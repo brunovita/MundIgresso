@@ -1,0 +1,5 @@
+c:\users\bruno\documents\visual studio 2015\Projects\MundIgresso\MundIgresso.Domain\bin\Debug\MundIgresso.Domain.dll
+c:\users\bruno\documents\visual studio 2015\Projects\MundIgresso\MundIgresso.Domain\bin\Debug\MundIgresso.Domain.pdb
+c:\users\bruno\documents\visual studio 2015\Projects\MundIgresso\MundIgresso.Domain\obj\Debug\MundIgresso.Domain.csprojResolveAssemblyReference.cache
+c:\users\bruno\documents\visual studio 2015\Projects\MundIgresso\MundIgresso.Domain\obj\Debug\MundIgresso.Domain.dll
+c:\users\bruno\documents\visual studio 2015\Projects\MundIgresso\MundIgresso.Domain\obj\Debug\MundIgresso.Domain.pdb
