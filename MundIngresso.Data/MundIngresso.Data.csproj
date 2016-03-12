@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="DataContexts\MundIngressoDB.cs" />
     <Compile Include="DataContexts\MundIngressoInitializer.cs" />
+    <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Mappings\TicketMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
