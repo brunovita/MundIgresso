@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace MundIgresso.Domain
+﻿namespace MundIgresso.Domain
 {
     public class Category
     {
