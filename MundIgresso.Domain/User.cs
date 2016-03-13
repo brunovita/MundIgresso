@@ -10,7 +10,7 @@ namespace MundIgresso.Domain
         public string Cpf { get; set; }
         public DateTime DateOfBirth { get; set; }
         public char Gender { get; set; }
-        public Address Address { get; set; }
+        //public Address Address { get; set; }
 
     }
 }

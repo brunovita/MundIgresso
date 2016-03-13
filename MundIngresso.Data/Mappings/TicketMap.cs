@@ -1,10 +1,5 @@
 ﻿using MundIgresso.Domain;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MundIngresso.Data.Mappings
 {
@@ -18,7 +13,7 @@ namespace MundIngresso.Data.Mappings
             Property(x => x.Price).IsRequired();
             Property(x => x.AcquireDate).IsRequired();
 
-            HasRequired(x => x.Category);
+            //HasRequired(x => x.Category);
         }
     }
 }

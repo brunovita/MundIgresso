@@ -49,16 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContexts\MundIngressoDB.cs" />
+    <Compile Include="DataContexts\MundIngressoContext.cs" />
     <Compile Include="DataContexts\MundIngressoInitializer.cs" />
-    <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\TicketMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MundIgresso.Domain\MundIgresso.Domain.csproj">
+    <ProjectReference Include="..\MundIgresso.Domain\MundIngresso.Domain.csproj">
       <Project>{e3a292b1-8b25-4786-8875-afb9a2ab9c92}</Project>
-      <Name>MundIgresso.Domain</Name>
+      <Name>MundIngresso.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

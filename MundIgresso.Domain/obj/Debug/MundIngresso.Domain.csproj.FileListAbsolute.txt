@@ -1,0 +1,4 @@
+C:\Users\Bruno\Documents\Visual Studio 2015\Projects\MundIgresso\MundIgresso.Domain\bin\Debug\MundIgresso.Domain.dll
+C:\Users\Bruno\Documents\Visual Studio 2015\Projects\MundIgresso\MundIgresso.Domain\bin\Debug\MundIgresso.Domain.pdb
+C:\Users\Bruno\Documents\Visual Studio 2015\Projects\MundIgresso\MundIgresso.Domain\obj\Debug\MundIgresso.Domain.dll
+C:\Users\Bruno\Documents\Visual Studio 2015\Projects\MundIgresso\MundIgresso.Domain\obj\Debug\MundIgresso.Domain.pdb
