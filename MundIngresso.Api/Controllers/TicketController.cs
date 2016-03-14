@@ -1,106 +1,103 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using MundIgresso.Domain;
+using MundIngresso.Data.DataContexts;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Description;
-using MundIgresso.Domain;
-using MundIngresso.Data.DataContexts;
 
 namespace MundIngresso.Api.Controllers
 {
+    [RoutePrefix("api/v1/public")]
     public class TicketController : ApiController
     {
         private MundIngressoContext db = new MundIngressoContext();
-
-        // GET: api/Ticket
-        public IQueryable<Ticket> GetTickets()
+        [Route("Tickets")]
+        public HttpResponseMessage GetTickets()
         {
-            return db.Tickets;
+            var result = db.Tickets.ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        // GET: api/Ticket/5
-        [ResponseType(typeof(Ticket))]
-        public IHttpActionResult GetTicket(int id)
+        [HttpPost]
+        [Route("ticket")]
+        public HttpResponseMessage PostTicket(Ticket ticket)
         {
-            Ticket ticket = db.Tickets.Find(id);
             if (ticket == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(ticket);
-        }
-
-        // PUT: api/Ticket/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutTicket(int id, Ticket ticket)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != ticket.TicketID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(ticket).State = EntityState.Modified;
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             try
             {
+                db.Tickets.Add(ticket);
                 db.SaveChanges();
+                var result = ticket;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (System.Exception)
             {
-                if (!TicketExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Falha ao Adicionar Ticket");
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Ticket
-        [ResponseType(typeof(Ticket))]
-        public IHttpActionResult PostTicket(Ticket ticket)
+        [HttpPatch]
+        [Route("ticket")]
+        public HttpResponseMessage PacthTicket(Ticket ticket)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Tickets.Add(ticket);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = ticket.TicketID }, ticket);
-        }
-
-        // DELETE: api/Ticket/5
-        [ResponseType(typeof(Ticket))]
-        public IHttpActionResult DeleteTicket(int id)
-        {
-            Ticket ticket = db.Tickets.Find(id);
             if (ticket == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            try
             {
-                return NotFound();
+                db.Entry<Ticket>(ticket).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                var result = ticket;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
-
-            db.Tickets.Remove(ticket);
-            db.SaveChanges();
-
-            return Ok(ticket);
+            catch (System.Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Falha ao alterar Ticket");
+            }
         }
+
+        [HttpPut]
+        [Route("ticket")]
+        public HttpResponseMessage PutTicket(Ticket ticket)
+        {
+            if (ticket == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            try
+            {
+                db.Entry<Ticket>(ticket).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                var result = ticket;
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Falha ao alterar Ticket");
+            }
+        }
+
+        [HttpDelete]
+        [Route("ticket")]
+        public HttpResponseMessage DeleteTicket(int ticketid)
+        {
+            if (ticketid <= 0)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            try
+            {
+                db.Tickets.Remove(db.Tickets.Find(ticketid));
+                db.SaveChanges();
+                var result = ticketid;
+                return Request.CreateResponse(HttpStatusCode.OK, "Ticket Excluído.");
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Falha ao excluir");
+            }
+        }
+
 
         protected override void Dispose(bool disposing)
         {
@@ -109,11 +106,6 @@ namespace MundIngresso.Api.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool TicketExists(int id)
-        {
-            return db.Tickets.Count(e => e.TicketID == id) > 0;
         }
     }
 }

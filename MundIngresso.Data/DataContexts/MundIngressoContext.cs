@@ -8,6 +8,8 @@ namespace MundIngresso.Data.DataContexts
         public MundIngressoContext() : base ("MundIngressoConnectionString")
         {
             Database.SetInitializer<MundIngressoContext>(new MundIngressoInitializer());
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }
